@@ -10,7 +10,7 @@ const WebDesign = () => (
     heroImage={serviceWebdesign}
   >
     <h2 className="font-display text-2xl font-bold text-foreground mb-8">Portfolio</h2>
-    <GalleryGrid items={webDesignItems} />
+    <GalleryGrid items={webDesignItems} basePath="/web-design" />
   </ServicePageLayout>
 );
 

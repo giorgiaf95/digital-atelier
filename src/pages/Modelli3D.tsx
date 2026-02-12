@@ -10,7 +10,7 @@ const Modelli3D = () => (
     heroImage={service3d}
   >
     <h2 className="font-display text-2xl font-bold text-foreground mb-8">Portfolio</h2>
-    <GalleryGrid items={models3dItems} />
+    <GalleryGrid items={models3dItems} basePath="/modelli-3d" />
   </ServicePageLayout>
 );
 
