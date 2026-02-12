@@ -10,7 +10,7 @@ const Grafiche2D = () => (
     heroImage={service2d}
   >
     <h2 className="font-display text-2xl font-bold text-foreground mb-8">Portfolio</h2>
-    <GalleryGrid items={graphics2dItems} />
+    <GalleryGrid items={graphics2dItems} basePath="/grafiche-2d" />
   </ServicePageLayout>
 );
 

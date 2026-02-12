@@ -11,7 +11,9 @@ import Modelli3D from "./pages/Modelli3D";
 import Grafiche2D from "./pages/Grafiche2D";
 import GameDesign from "./pages/GameDesign";
 import NarrativeDesign from "./pages/NarrativeDesign";
+import News from "./pages/News";
 import Contatti from "./pages/Contatti";
+import ProductDetail from "./pages/ProductDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,7 +33,9 @@ const App = () => (
             <Route path="/grafiche-2d" element={<Grafiche2D />} />
             <Route path="/game-design" element={<GameDesign />} />
             <Route path="/narrative-design" element={<NarrativeDesign />} />
+            <Route path="/news" element={<News />} />
             <Route path="/contatti" element={<Contatti />} />
+            <Route path="/:section/:id" element={<ProductDetail />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

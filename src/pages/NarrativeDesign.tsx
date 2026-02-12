@@ -10,7 +10,7 @@ const NarrativeDesign = () => (
     heroImage={serviceNarrative}
   >
     <h2 className="font-display text-2xl font-bold text-foreground mb-8">Portfolio</h2>
-    <GalleryGrid items={narrativeDesignItems} />
+    <GalleryGrid items={narrativeDesignItems} basePath="/narrative-design" />
   </ServicePageLayout>
 );
 

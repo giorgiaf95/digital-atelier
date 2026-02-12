@@ -22,11 +22,7 @@ const Index = () => {
     <div className="pt-16">
       {/* Hero */}
       <section className="relative h-[90vh] min-h-[600px] flex items-center overflow-hidden">
-        <img
-          src={heroBg}
-          alt="Creative Studio"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        <img src={heroBg} alt="Digital Atelier" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/20" />
         <div className="relative z-10 container mx-auto px-4">
           <motion.div
@@ -36,9 +32,9 @@ const Index = () => {
             className="max-w-2xl"
           >
             <h1 className="font-display text-5xl md:text-7xl font-bold text-foreground leading-tight">
-              Creiamo
+              Digital
               <br />
-              <span className="gradient-text">Mondi Digitali</span>
+              <span className="gradient-text">Atelier</span>
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl mt-6 max-w-lg">
               Design, arte e storytelling al servizio della tua visione creativa.
