@@ -3,7 +3,15 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import Index from "./pages/Index";
+import WebDesign from "./pages/WebDesign";
+import Modelli3D from "./pages/Modelli3D";
+import Grafiche2D from "./pages/Grafiche2D";
+import GameDesign from "./pages/GameDesign";
+import NarrativeDesign from "./pages/NarrativeDesign";
+import Contatti from "./pages/Contatti";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -14,11 +22,20 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/web-design" element={<WebDesign />} />
+            <Route path="/modelli-3d" element={<Modelli3D />} />
+            <Route path="/grafiche-2d" element={<Grafiche2D />} />
+            <Route path="/game-design" element={<GameDesign />} />
+            <Route path="/narrative-design" element={<NarrativeDesign />} />
+            <Route path="/contatti" element={<Contatti />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
