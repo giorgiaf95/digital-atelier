@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Heart, Star, Play, ImageIcon } from "lucide-react";
 import { webDesignItems, models3dItems, graphics2dItems, gameDesignItems, narrativeDesignItems } from "@/data/galleryData";
 import type { GalleryItem } from "@/data/galleryData";
+import TemplatePreview from "@/components/TemplatePreview";
+import GameDemoPlayer from "@/components/GameDemoPlayer";
 
 const allItems: Record<string, GalleryItem[]> = {
   "web-design": webDesignItems,
@@ -32,6 +34,9 @@ const ProductDetail = () => {
     );
   }
 
+  const isWebDesign = section === "web-design";
+  const isGameDesign = section === "game-design";
+
   return (
     <div className="pt-16 min-h-screen">
       <div className="container mx-auto px-4 py-12">
@@ -44,32 +49,17 @@ const ProductDetail = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Images section */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="space-y-4"
-          >
+          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
             <div className="rounded-lg overflow-hidden card-glow">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-full aspect-[4/3] object-cover"
-              />
+              <img src={product.image} alt={product.title} className="w-full aspect-[4/3] object-cover" />
             </div>
-            {/* Thumbnail row (mock multiple images) */}
             <div className="grid grid-cols-4 gap-3">
               {[1, 2, 3, 4].map((n) => (
-                <div
-                  key={n}
-                  className={`aspect-square rounded-lg overflow-hidden border-2 cursor-pointer transition-colors ${
-                    n === 1 ? "border-primary" : "border-border hover:border-primary/50"
-                  }`}
-                >
+                <div key={n} className={`aspect-square rounded-lg overflow-hidden border-2 cursor-pointer transition-colors ${n === 1 ? "border-primary" : "border-border hover:border-primary/50"}`}>
                   <img src={product.image} alt="" className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
-            {/* Clip placeholder */}
             <div className="rounded-lg bg-card border border-border p-8 flex flex-col items-center justify-center gap-3 text-muted-foreground">
               <Play size={32} />
               <span className="text-sm font-medium">Video / Clip disponibile a breve</span>
@@ -77,28 +67,17 @@ const ProductDetail = () => {
           </motion.div>
 
           {/* Info section */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 }}
-            className="space-y-6"
-          >
+          <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }} className="space-y-6">
             <div>
-              <span className="text-xs font-medium text-primary uppercase tracking-wider">
-                {product.category}
-              </span>
-              <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">
-                {product.title}
-              </h1>
+              <span className="text-xs font-medium text-primary uppercase tracking-wider">{product.category}</span>
+              <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">{product.title}</h1>
             </div>
 
             <p className="text-muted-foreground text-lg leading-relaxed">{product.description}</p>
 
             <div className="flex flex-wrap gap-2">
               {product.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">
-                  #{tag}
-                </span>
+                <span key={tag} className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">#{tag}</span>
               ))}
             </div>
 
@@ -106,11 +85,7 @@ const ProductDetail = () => {
             <div className="flex items-center gap-4 py-4 border-y border-border">
               <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <Star
-                    key={star}
-                    size={20}
-                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                  />
+                  <Star key={star} size={20} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
                 ))}
               </div>
               <span className="text-muted-foreground text-sm">Nessuna valutazione ancora</span>
@@ -125,6 +100,23 @@ const ProductDetail = () => {
                 <ImageIcon size={18} /> Richiedi Info
               </button>
             </div>
+
+            {/* Template Preview / Game Demo */}
+            {isWebDesign && (
+              <div className="bg-card rounded-lg p-6 card-glow">
+                <h3 className="font-display font-semibold text-foreground mb-3">Simulatore Anteprima</h3>
+                <p className="text-muted-foreground text-sm mb-4">Visualizza il template su diversi dispositivi.</p>
+                <TemplatePreview title={product.title} image={product.image} />
+              </div>
+            )}
+
+            {isGameDesign && (
+              <div className="bg-card rounded-lg p-6 card-glow">
+                <h3 className="font-display font-semibold text-foreground mb-3">Demo Giocabile</h3>
+                <p className="text-muted-foreground text-sm mb-4">Prova la demo del gioco direttamente nel browser.</p>
+                <GameDemoPlayer title={product.title} image={product.image} hasDemo={true} />
+              </div>
+            )}
 
             {/* Details */}
             <div className="bg-card rounded-lg p-6 card-glow space-y-4">

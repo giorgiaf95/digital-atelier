@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MobileBottomBar from "@/components/MobileBottomBar";
 import Index from "./pages/Index";
 import WebDesign from "./pages/WebDesign";
 import Modelli3D from "./pages/Modelli3D";
@@ -14,6 +15,11 @@ import NarrativeDesign from "./pages/NarrativeDesign";
 import News from "./pages/News";
 import Contatti from "./pages/Contatti";
 import ProductDetail from "./pages/ProductDetail";
+import ArticleDetail from "./pages/ArticleDetail";
+import Login from "./pages/Login";
+import Profilo from "./pages/Profilo";
+import Wishlist from "./pages/Wishlist";
+import Impostazioni from "./pages/Impostazioni";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,7 +31,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Navbar />
-        <main>
+        <main className="pb-16 xl:pb-0">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/web-design" element={<WebDesign />} />
@@ -34,12 +40,18 @@ const App = () => (
             <Route path="/game-design" element={<GameDesign />} />
             <Route path="/narrative-design" element={<NarrativeDesign />} />
             <Route path="/news" element={<News />} />
+            <Route path="/news/:id" element={<ArticleDetail />} />
             <Route path="/contatti" element={<Contatti />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profilo" element={<Profilo />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/impostazioni" element={<Impostazioni />} />
             <Route path="/:section/:id" element={<ProductDetail />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />
+        <MobileBottomBar />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

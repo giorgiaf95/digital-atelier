@@ -65,6 +65,7 @@ const News = () => {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="group"
               >
+                <Link to={`/news/${article.id}`} className="block h-full">
                 <div className="card-glow rounded-lg overflow-hidden bg-card h-full flex flex-col">
                   <div className="relative aspect-video overflow-hidden">
                     <img
@@ -100,6 +101,7 @@ const News = () => {
                     </span>
                   </div>
                 </div>
+                </Link>
               </motion.article>
             ))}
           </div>

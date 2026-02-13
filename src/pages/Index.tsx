@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles, Palette, Lightbulb } from "lucide-react";
 import ServiceCard from "@/components/ServiceCard";
 import heroBg from "@/assets/hero-bg.jpg";
 import serviceWebdesign from "@/assets/service-webdesign.jpg";
@@ -8,6 +7,7 @@ import service3d from "@/assets/service-3d.jpg";
 import service2d from "@/assets/service-2d.jpg";
 import serviceGamedesign from "@/assets/service-gamedesign.jpg";
 import serviceNarrative from "@/assets/service-narrative.jpg";
+import { Link } from "react-router-dom";
 
 const services = [
   { title: "Web Design", description: "Siti web moderni, responsive e ad alte prestazioni.", image: serviceWebdesign, path: "/web-design" },
@@ -16,6 +16,16 @@ const services = [
   { title: "Game Design", description: "Meccaniche di gioco, level design e game systems.", image: serviceGamedesign, path: "/game-design" },
   { title: "Narrative Design", description: "Worldbuilding, dialoghi e storytelling interattivo.", image: serviceNarrative, path: "/narrative-design" },
 ];
+
+const highlights = [
+  { icon: Sparkles, title: "Creatività Digitale", text: "Ogni progetto nasce dall'unione di arte e tecnologia." },
+  { icon: Palette, title: "Design su Misura", text: "Soluzioni personalizzate per ogni esigenza creativa." },
+  { icon: Lightbulb, title: "Innovazione Continua", text: "Strumenti e tecniche all'avanguardia per risultati unici." },
+];
+
+const scrollToServices = () => {
+  document.getElementById("servizi")?.scrollIntoView({ behavior: "smooth" });
+};
 
 const Index = () => {
   return (
@@ -46,19 +56,55 @@ const Index = () => {
               >
                 Inizia un Progetto <ArrowRight size={18} />
               </Link>
-              <Link
-                to="/web-design"
+              <button
+                onClick={scrollToServices}
                 className="inline-flex items-center gap-2 border border-border text-foreground px-6 py-3 rounded-lg font-display font-medium hover:bg-secondary transition-colors"
               >
                 Esplora i Servizi
-              </Link>
+              </button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Presentation */}
       <section className="container mx-auto px-4 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+            Perché <span className="gradient-text">Digital Atelier</span>
+          </h2>
+          <p className="text-muted-foreground mt-3 max-w-lg mx-auto">
+            Un laboratorio creativo dove le idee prendono forma.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {highlights.map((h, i) => (
+            <motion.div
+              key={h.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12 }}
+              className="bg-card rounded-xl p-8 card-glow text-center"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/15 flex items-center justify-center mx-auto mb-4">
+                <h.icon size={24} className="text-primary" />
+              </div>
+              <h3 className="font-display text-lg font-semibold text-foreground mb-2">{h.title}</h3>
+              <p className="text-muted-foreground text-sm">{h.text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section id="servizi" className="container mx-auto px-4 py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
