@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Heart, Star, ExternalLink } from "lucide-react";
+import { X, Heart, Star, ExternalLink, LayoutGrid, Grid3X3, List } from "lucide-react";
 import { Link } from "react-router-dom";
 import SearchAndFilter from "@/components/SearchAndFilter";
 import type { GalleryItem } from "@/data/galleryData";
@@ -14,6 +14,7 @@ const GalleryGrid = ({ items, basePath }: GalleryGridProps) => {
   const [selected, setSelected] = useState<GalleryItem | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Tutti");
+  const [viewMode, setViewMode] = useState<"grid" | "compact" | "list">("grid");
 
   const categories = useMemo(() => {
     const cats = [...new Set(items.map((i) => i.category))];
@@ -35,53 +36,111 @@ const GalleryGrid = ({ items, basePath }: GalleryGridProps) => {
 
   return (
     <>
-      <SearchAndFilter
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        placeholder="Cerca prodotti..."
-      />
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
+        <div className="flex-1">
+          <SearchAndFilter
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            placeholder="Cerca prodotti..."
+          />
+        </div>
+        <div className="flex items-center gap-1 bg-card border border-border rounded-lg p-1 shrink-0">
+          {([
+            { mode: "grid" as const, icon: LayoutGrid, label: "Griglia" },
+            { mode: "compact" as const, icon: Grid3X3, label: "Compatta" },
+            { mode: "list" as const, icon: List, label: "Lista" },
+          ]).map(({ mode, icon: Icon, label }) => (
+            <button
+              key={mode}
+              onClick={() => setViewMode(mode)}
+              title={label}
+              className={`p-2 rounded-md transition-colors ${
+                viewMode === mode ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Icon size={16} />
+            </button>
+          ))}
+        </div>
+      </div>
 
       {filtered.length === 0 ? (
         <p className="text-muted-foreground text-center py-12">Nessun risultato trovato.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((item, i) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="group cursor-pointer"
-              onClick={() => setSelected(item)}
-            >
-              <div className="card-glow rounded-lg overflow-hidden bg-card">
-                <div className="relative aspect-square overflow-hidden">
+        <div
+          className={
+            viewMode === "grid"
+              ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              : viewMode === "compact"
+              ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+              : "flex flex-col gap-3"
+          }
+        >
+          {filtered.map((item, i) =>
+            viewMode === "list" ? (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.03 }}
+                className="group cursor-pointer"
+                onClick={() => setSelected(item)}
+              >
+                <div className="card-glow rounded-lg overflow-hidden bg-card flex items-center gap-4 p-3">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded object-cover shrink-0"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-background/0 group-hover:bg-background/30 transition-colors flex items-center justify-center">
-                    <span className="text-foreground font-display font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                      Visualizza
+                  <div className="flex-1 min-w-0">
+                    <span className="text-[10px] font-medium text-primary">{item.category}</span>
+                    <h4 className="font-display font-medium text-foreground text-sm truncate">{item.title}</h4>
+                    <p className="text-muted-foreground text-xs mt-0.5 line-clamp-1">{item.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="group cursor-pointer"
+                onClick={() => setSelected(item)}
+              >
+                <div className="card-glow rounded-lg overflow-hidden bg-card">
+                  <div className="relative aspect-square overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-background/0 group-hover:bg-background/30 transition-colors flex items-center justify-center">
+                      <span className="text-foreground font-display font-semibold opacity-0 group-hover:opacity-100 transition-opacity text-xs sm:text-sm">
+                        Visualizza
+                      </span>
+                    </div>
+                    <span className="absolute top-2 left-2 px-1.5 py-0.5 bg-primary/90 text-primary-foreground text-[10px] font-medium rounded">
+                      {item.category}
                     </span>
                   </div>
-                  <span className="absolute top-3 left-3 px-2 py-1 bg-primary/90 text-primary-foreground text-xs font-medium rounded">
-                    {item.category}
-                  </span>
+                  {viewMode === "grid" && (
+                    <div className="p-4">
+                      <h4 className="font-display font-medium text-foreground text-sm">{item.title}</h4>
+                      <p className="text-muted-foreground text-xs mt-1 line-clamp-1">{item.description}</p>
+                    </div>
+                  )}
                 </div>
-                <div className="p-4">
-                  <h4 className="font-display font-medium text-foreground text-sm">{item.title}</h4>
-                  <p className="text-muted-foreground text-xs mt-1 line-clamp-1">{item.description}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            )
+          )}
         </div>
       )}
 
