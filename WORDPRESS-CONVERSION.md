@@ -1,5 +1,24 @@
 # 🎉 Conversione Completata: Lovable → WordPress
 
+## ⚠️ IMPORTANTE: Leggi Prima di Installare
+
+### Errore Comune: "Stylesheet is missing"
+
+**Se vedi questo errore, stai caricando la cartella sbagliata!**
+
+Il tema WordPress si trova in: `wordpress-theme/digital-atelier/`
+
+**Non caricare** la cartella `wordpress-theme/` stessa, ma SOLO `digital-atelier/`!
+
+```
+❌ SBAGLIATO: wp-content/themes/wordpress-theme/
+✅ CORRETTO:  wp-content/themes/digital-atelier/
+```
+
+📖 **Guida completa risoluzione problemi**: [wordpress-theme/TROUBLESHOOTING.md](wordpress-theme/TROUBLESHOOTING.md)
+
+---
+
 ## ✅ Lavoro Completato
 
 Il prototipo "Digital Atelier" è stato **completamente convertito** da Lovable (React/Vite/TypeScript) a un tema WordPress professionale e funzionale.
