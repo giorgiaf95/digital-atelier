@@ -25,7 +25,7 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 const ComingSoon = () => (
   <div className="min-h-screen flex items-center justify-center bg-black">
