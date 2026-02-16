@@ -19,7 +19,7 @@ import ProductDetail from "./pages/ProductDetail";
 import ArticleDetail from "./pages/ArticleDetail";
 import NotFound from "./pages/NotFound";
 
-// Import pages utente (sempre importate ma usate solo se features attive)
+// Import pages utente (sempre importate ma usate solo se features attive).
 import Login from "./pages/Login";
 import Profilo from "./pages/Profilo";
 import Wishlist from "./pages/Wishlist";
