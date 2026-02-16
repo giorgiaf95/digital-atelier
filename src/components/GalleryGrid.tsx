@@ -4,6 +4,7 @@ import { X, Heart, Star, ExternalLink, LayoutGrid, Grid3X3, List } from "lucide-
 import { Link } from "react-router-dom";
 import SearchAndFilter from "@/components/SearchAndFilter";
 import type { GalleryItem } from "@/data/galleryData";
+import { FEATURES } from "@/config/features"; 
 
 interface GalleryGridProps {
   items: GalleryItem[];
@@ -197,20 +198,28 @@ const GalleryGrid = ({ items, basePath }: GalleryGridProps) => {
                     </span>
                   ))}
                 </div>
-                <div className="flex items-center gap-4 mt-4 pt-4 border-t border-border">
-                  <button className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors">
-                    <Heart size={18} /> Mi piace
-                  </button>
-                  <div className="flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star
-                        key={star}
-                        size={16}
-                        className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                      />
-                    ))}
+
+                {/* 🔒 Interazioni utente - mostrate solo se features attive */}
+                {(FEATURES.WISHLIST || FEATURES.RATINGS) && (
+                  <div className="flex items-center gap-4 mt-4 pt-4 border-t border-border">
+                    {FEATURES.WISHLIST && (
+                      <button className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors">
+                        <Heart size={18} /> Mi piace
+                      </button>
+                    )}
+                    {FEATURES.RATINGS && (
+                      <div className="flex items-center gap-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star
+                            key={star}
+                            size={16}
+                            className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
-                </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
