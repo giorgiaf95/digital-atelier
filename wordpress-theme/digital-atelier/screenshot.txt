@@ -1,0 +1,30 @@
+# Digital Atelier - Screenshot
+
+Per aggiungere uno screenshot del tema:
+
+1. Crea un'immagine delle dimensioni 1200x900 pixels
+2. Salva come `screenshot.png` nella cartella principale del tema
+3. L'immagine verrà mostrata nell'admin di WordPress in Aspetto → Temi
+
+## Screenshot Consigliato
+
+Lo screenshot dovrebbe mostrare:
+- L'hero section della homepage
+- Il design generale del tema
+- Gli elementi distintivi (colori, tipografia, layout)
+
+## Strumenti per Creare lo Screenshot
+
+1. Apri il sito con il tema attivato
+2. Usa uno strumento per screenshot:
+   - **Windows**: Strumento di cattura, Snipping Tool
+   - **Mac**: Cmd+Shift+4
+   - **Browser**: Estensione "Full Page Screenshot"
+3. Ritaglia l'immagine a 1200x900px
+4. Salva come `screenshot.png`
+
+## Temporaneo
+
+Fino a quando non hai uno screenshot reale, puoi:
+- Usare un'immagine placeholder
+- O semplicemente lasciare questo spazio vuoto (WordPress mostrerà un placeholder)

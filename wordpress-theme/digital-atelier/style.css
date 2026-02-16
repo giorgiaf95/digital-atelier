@@ -1,0 +1,217 @@
+/*
+Theme Name: Digital Atelier
+Theme URI: https://github.com/giorgiaf95/digital-atelier
+Author: Digital Atelier
+Author URI: https://github.com/giorgiaf95
+Description: Un tema WordPress moderno per portfolio e blog dedicato a servizi creativi digitali: web design, modelli 3D, grafiche 2D, game design e narrative design. Convertito da prototipo Lovable.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.4
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: digital-atelier
+Tags: portfolio, blog, creative, modern, responsive, custom-colors, custom-menu, featured-images, threaded-comments
+
+Digital Atelier WordPress Theme, Copyright 2024
+Digital Atelier is distributed under the terms of the GNU GPL.
+*/
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* Root Variables - Dark Theme Inspired by Digital Atelier */
+:root {
+  /* Colors */
+  --color-background: hsl(30, 10%, 7%);
+  --color-foreground: hsl(40, 15%, 92%);
+  --color-card: hsl(30, 8%, 11%);
+  --color-card-foreground: hsl(40, 15%, 92%);
+  --color-primary: hsl(38, 85%, 55%);
+  --color-primary-foreground: hsl(30, 10%, 7%);
+  --color-secondary: hsl(30, 8%, 16%);
+  --color-secondary-foreground: hsl(40, 12%, 80%);
+  --color-muted: hsl(30, 8%, 15%);
+  --color-muted-foreground: hsl(30, 8%, 50%);
+  --color-accent: hsl(12, 75%, 55%);
+  --color-border: hsl(30, 8%, 18%);
+  
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  
+  /* Border Radius */
+  --radius: 0.75rem;
+  
+  /* Transitions */
+  --transition: all 0.3s ease;
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary);
+}
+
+/* Cards */
+.card {
+  background-color: var(--color-card);
+  border-radius: var(--radius);
+  padding: var(--spacing-xl);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: 0 0 30px rgba(38, 85%, 55%, 0.2);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.text-muted { color: var(--color-muted-foreground); }
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mt-4 { margin-top: var(--spacing-xl); }
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+.mb-4 { margin-bottom: var(--spacing-xl); }
+.py-4 { padding-top: var(--spacing-xl); padding-bottom: var(--spacing-xl); }
+.py-5 { padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-2xl); }
+
+/* WordPress Core Styles */
+.alignleft {
+  float: left;
+  margin-right: var(--spacing-md);
+}
+
+.alignright {
+  float: right;
+  margin-left: var(--spacing-md);
+}
+
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-caption {
+  max-width: 100%;
+}
+
+.wp-caption-text {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+  margin-top: var(--spacing-xs);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+}
