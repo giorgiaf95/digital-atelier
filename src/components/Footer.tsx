@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import AdminAccess from "./AdminAccess";
 
 const Footer = () => (
   <footer className="border-t border-border bg-card/50 mt-20 pb-16 xl:pb-0">
@@ -25,6 +26,7 @@ const Footer = () => (
           <div className="flex flex-col gap-2 text-sm text-muted-foreground">
             <Link to="/news" className="hover:text-primary transition-colors">News</Link>
             <Link to="/contatti" className="hover:text-primary transition-colors">Contatti</Link>
+            <li><AdminAccess /></li>
           </div>
         </div>
         <div>
