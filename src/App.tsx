@@ -27,8 +27,8 @@ import Impostazioni from "./pages/Impostazioni";
 
 const queryClient = new QueryClient();
 
-// 🔒 MODALITÀ MANUTENZIONE - Cambia in false quando pronta
-const MAINTENANCE_MODE = false;
+// 🔒 MODALITÀ MANUTENZIONE - false sito attivo - true sito disattivato
+const MAINTENANCE_MODE = true;
 
 /**
  * 🚧 Pagina "Coming Soon" mostrata durante manutenzione
