@@ -38,9 +38,13 @@ const ComingSoon = () => (
     <div className="text-center px-4">
       <div className="mb-8">
         {/* Logo/Icona */}
-        <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-yellow-500/20 flex items-center justify-center">
-          <span className="text-6xl">🎨</span>
-        </div>
+ <div className="w-24 h-24 mx-auto mb-4">
+   <img 
+     src="/logo.svg" 
+     alt="Digital Atelier Logo" 
+     className="w-full h-full object-contain"
+   />
+ </div> 
       </div>
       <h1 className="text-6xl font-bold text-yellow-500 mb-4">
         Digital Atelier

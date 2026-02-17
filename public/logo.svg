@@ -1,0 +1,15 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cerchio sfondo -->
+  <circle cx="100" cy="100" r="95" fill="#f59e0b" opacity="0.1"/>
+  
+  <!-- Testo DA -->
+  <text 
+    x="100" 
+    y="130" 
+    font-family="Arial, sans-serif" 
+    font-size="80" 
+    font-weight="bold" 
+    fill="#f59e0b" 
+    text-anchor="middle"
+  >DA</text>
+</svg>
