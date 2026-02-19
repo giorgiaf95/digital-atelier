@@ -3,8 +3,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Heart, Star, ExternalLink, LayoutGrid, Grid3X3, List } from "lucide-react";
 import { Link } from "react-router-dom";
 import SearchAndFilter from "@/components/SearchAndFilter";
-import type { GalleryItem } from "@/data/galleryData";
-import { FEATURES } from "@/config/features"; 
+import { FEATURES } from "@/config/features";
+
+// 🔥 Aggiungi isDraft all'interfaccia
+export interface GalleryItem {
+  id: string;
+  title: string;
+  image: string;
+  category: string;
+  tags: string[];
+  description: string;
+  isDraft?: boolean; // ← NUOVO campo
+}
 
 interface GalleryGridProps {
   items: GalleryItem[];
@@ -92,15 +102,26 @@ const GalleryGrid = ({ items, basePath }: GalleryGridProps) => {
                 onClick={() => setSelected(item)}
               >
                 <div className="card-glow rounded-lg overflow-hidden bg-card flex items-center gap-4 p-3">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-16 h-16 sm:w-20 sm:h-20 rounded object-cover shrink-0"
-                    loading="lazy"
-                  />
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full rounded object-cover"
+                      loading="lazy"
+                    />
+                    {/* 🔥 Badge Bozza in vista lista */}
+                    {item.isDraft && (
+                      <span className="absolute -top-1 -right-1 bg-yellow-500 text-black text-[10px] font-bold px-1.5 py-0.5 rounded">
+                        📝
+                      </span>
+                    )}
+                  </div>
                   <div className="flex-1 min-w-0">
                     <span className="text-[10px] font-medium text-primary">{item.category}</span>
-                    <h4 className="font-display font-medium text-foreground text-sm truncate">{item.title}</h4>
+                    <h4 className="font-display font-medium text-foreground text-sm truncate">
+                      {item.title}
+                      {item.isDraft && <span className="ml-2 text-yellow-500 text-xs">• Bozza</span>}
+                    </h4>
                     <p className="text-muted-foreground text-xs mt-0.5 line-clamp-1">{item.description}</p>
                   </div>
                 </div>
@@ -128,13 +149,26 @@ const GalleryGrid = ({ items, basePath }: GalleryGridProps) => {
                         Visualizza
                       </span>
                     </div>
+                    
+                    {/* Badge categoria */}
                     <span className="absolute top-2 left-2 px-1.5 py-0.5 bg-primary/90 text-primary-foreground text-[10px] font-medium rounded">
                       {item.category}
                     </span>
+                    
+                    {/* 🔥 Badge Bozza */}
+                    {item.isDraft && (
+                      <span className="absolute top-2 right-2 px-2 py-1 bg-yellow-500 text-black text-[10px] font-bold rounded flex items-center gap-1">
+                        📝 Bozza
+                      </span>
+                    )}
                   </div>
+                  
                   {viewMode === "grid" && (
                     <div className="p-4">
-                      <h4 className="font-display font-medium text-foreground text-sm">{item.title}</h4>
+                      <h4 className="font-display font-medium text-foreground text-sm">
+                        {item.title}
+                        {item.isDraft && <span className="ml-2 text-yellow-500 text-xs">• Bozza</span>}
+                      </h4>
                       <p className="text-muted-foreground text-xs mt-1 line-clamp-1">{item.description}</p>
                     </div>
                   )}
@@ -168,6 +202,14 @@ const GalleryGrid = ({ items, basePath }: GalleryGridProps) => {
               >
                 <X size={20} />
               </button>
+              
+              {/* 🔥 Badge Bozza nel lightbox */}
+              {selected.isDraft && (
+                <div className="absolute top-4 left-4 z-10 px-3 py-1.5 bg-yellow-500 text-black text-xs font-bold rounded-lg flex items-center gap-2">
+                  📝 MODALITÀ BOZZA
+                </div>
+              )}
+              
               <img
                 src={selected.image}
                 alt={selected.title}
@@ -179,6 +221,7 @@ const GalleryGrid = ({ items, basePath }: GalleryGridProps) => {
                     <span className="text-xs font-medium text-primary">{selected.category}</span>
                     <h3 className="font-display text-2xl font-bold text-foreground mt-1">
                       {selected.title}
+                      {selected.isDraft && <span className="ml-3 text-yellow-500 text-sm">• Bozza</span>}
                     </h3>
                   </div>
                   {basePath && (
