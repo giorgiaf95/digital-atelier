@@ -1,5 +1,25 @@
 # Guida Rapida all'Installazione - Digital Atelier Theme
 
+## ⚠️ IMPORTANTE: Errore Comune "Stylesheet is missing"
+
+**SE VEDI L'ERRORE "Stylesheet is missing"**, stai probabilmente caricando la cartella sbagliata!
+
+### ❌ SBAGLIATO - NON fare così:
+```
+themes/wordpress-theme/          ← SBAGLIATO!
+```
+
+### ✅ CORRETTO - Fai così:
+```
+themes/digital-atelier/          ← CORRETTO!
+```
+
+**Devi caricare SOLO la cartella `digital-atelier` che si trova DENTRO `wordpress-theme/`**
+
+📖 Per soluzioni dettagliate, vedi: [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+
+---
+
 ## Installazione con Local by Flywheel (Consigliata)
 
 ### Passo 1: Installa Local

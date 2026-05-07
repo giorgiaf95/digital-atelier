@@ -4,6 +4,23 @@
 
 ---
 
+## ⚠️ ATTENZIONE: Errore "Stylesheet is missing"
+
+**Se vedi questo errore, stai caricando la cartella sbagliata!**
+
+### 🎯 Cartella CORRETTA da Caricare
+
+Devi caricare SOLO la cartella **`digital-atelier`** (che si trova dentro `wordpress-theme/`), NON la cartella `wordpress-theme` stessa!
+
+```
+❌ SBAGLIATO: themes/wordpress-theme/
+✅ CORRETTO:  themes/digital-atelier/
+```
+
+📖 **Vedi la guida completa**: [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+
+---
+
 ## 📖 Documentazione Disponibile
 
 Questa cartella contiene la conversione completa del prototipo "Digital Atelier" da Lovable (React/Vite) a WordPress.
@@ -27,7 +44,13 @@ Questa cartella contiene la conversione completa del prototipo "Digital Atelier"
    - Architettura del tema
    - Per sviluppatori
 
-4. **[digital-atelier/README.md](digital-atelier/README.md)** 📋
+4. **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** 🔧
+   - Soluzioni per errore "Stylesheet is missing"
+   - Problemi comuni e soluzioni
+   - Checklist verifica installazione
+   - Debug e risoluzione problemi
+
+5. **[digital-atelier/README.md](digital-atelier/README.md)** 📋
    - Documentazione completa del tema
    - Personalizzazioni e configurazioni
    - Plugin consigliati
